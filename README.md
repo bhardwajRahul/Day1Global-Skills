@@ -2,6 +2,8 @@
 
 Day1Global Investment Analysis Skills Repository | Day1Global 投资分析 Skills 共享仓库
 
+Author: [Ruby](https://x.com/Rubywang), [Star](https://x.com/starzq)
+
 [English](#tech-earnings-deepdive-tech-stock-earnings-deep-dive-skill) | [中文](#tech-earnings-deepdive科技股财报深度分析-skill)
 
 ---
