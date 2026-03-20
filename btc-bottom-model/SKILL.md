@@ -1,197 +1,197 @@
 ---
 name: btc-bottom-model
-description: 比特币抄底时机判断模型。通过追踪6大核心指标（RSI技术超跌、成交量萎缩、MVRV比率、社交媒体恐慌指数、矿机关机价、长期持有者行为）综合评估比特币是否进入抄底区间，输出抄底评级和建仓建议。当用户提到比特币抄底、BTC是否到底了、比特币超跌、MVRV、矿机关机价、长期持有者LTH、比特币恐慌指数、是否该买入比特币、BTC建仓时机、加密市场底部信号、比特币周期底部等话题时，务必使用此技能。即使用户只是笼统地问"现在能抄底比特币吗"或"BTC跌到位了没"，也应触发此技能来提供结构化的分析框架。
+description: Bitcoin bottom-timing judgment model. By tracking 6 core indicators (RSI technical oversold, volume dry-up, MVRV ratio, social media fear index, miner shutdown price, long-term holder behavior), it comprehensively evaluates whether Bitcoin has entered a bottom-fishing zone and outputs a bottom-fishing rating and position-building recommendations. When users mention topics such as Bitcoin bottom-fishing, whether BTC has bottomed out, Bitcoin oversold, MVRV, miner shutdown price, long-term holder LTH, Bitcoin fear index, whether to buy Bitcoin, BTC position entry timing, crypto market bottom signals, Bitcoin cycle bottom, etc., be sure to use this skill. Even if the user simply asks "Can I buy the dip on Bitcoin now?" or "Has BTC finished dropping?", this skill should be triggered to provide a structured analysis framework.
 ---
 
-# 比特币抄底时机判断模型
+# Bitcoin Bottom-Timing Judgment Model
 
-这个技能帮助你系统性地判断比特币是否进入值得建仓的底部区间。通过6大链上和市场指标的综合评估，避免"接飞刀"式的盲目抄底，找到概率更高的入场时机。
+This skill helps you systematically determine whether Bitcoin has entered a bottom zone worth building a position in. Through a comprehensive evaluation of 6 on-chain and market indicators, it avoids blind "catching a falling knife" style bottom-fishing and identifies entry opportunities with higher probability.
 
-## 使用场景
+## Use Cases
 
-当用户询问以下类型问题时使用此技能：
-- 比特币是否到底了 / 能不能抄底
-- BTC 当前处于周期什么位置
-- 链上数据是否支持建仓
-- 矿工成本线在哪里
-- 长期持有者在做什么
+Use this skill when users ask the following types of questions:
+- Has Bitcoin bottomed out / Can I buy the dip
+- Where is BTC in the current cycle
+- Do on-chain data support building a position
+- Where is the miner cost floor
+- What are long-term holders doing
 
-## 分析框架
+## Analysis Framework
 
-### 6大核心抄底指标
+### 6 Core Bottom-Fishing Indicators
 
-对每个指标，使用 web_search 搜索最新数据，然后按照下方标准评估。
+For each indicator, use web_search to search for the latest data, then evaluate according to the criteria below.
 
-#### 指标1：K线技术指标 — RSI 超跌
+#### Indicator 1: K-line Technical Indicator — RSI Oversold
 
-**是什么**：RSI（Relative Strength Index，相对强弱指标）是一个衡量价格涨跌速度和幅度的技术分析工具，数值在 0-100 之间。简单理解：RSI 越低说明最近跌得越狠、卖压越大。这里特别关注"周线级别"（即以每周为一根K线来看），因为周线过滤掉了日线的短期噪音，更能反映中长期趋势。
+**What it is**: RSI (Relative Strength Index) is a technical analysis tool that measures the speed and magnitude of price movements, with values ranging from 0-100. In simple terms: the lower the RSI, the more severe the recent decline and selling pressure. Here we focus specifically on the "weekly level" (i.e., using each week as one candlestick), because the weekly timeframe filters out the short-term noise of daily charts and better reflects medium- to long-term trends.
 
-**搜索关键词**：`Bitcoin weekly RSI` 或 `BTC RSI 14 current`
+**Search keywords**: `Bitcoin weekly RSI` or `BTC RSI 14 current`
 
-**抄底信号标准**：
-- 周线 RSI < 30 → ✅ 触发：严重超跌，历史上这个水平往往对应周期底部区域
-- 周线 RSI 30-45 → 🟡 接近：偏弱但未到极端
-- 周线 RSI > 45 → ❌ 未触发：不属于超跌状态
+**Bottom signal criteria**:
+- Weekly RSI < 30 → ✅ Triggered: Severely oversold, historically this level often corresponds to cycle bottom zones
+- Weekly RSI 30-45 → 🟡 Approaching: Weak but not at extremes
+- Weekly RSI > 45 → ❌ Not triggered: Not in an oversold state
 
-**解读要点**：比特币历史上周线RSI跌破30的次数屈指可数（2015年、2018年底、2020年3月、2022年底），每次都对应了重大底部。但注意RSI可以在低位持续一段时间，不代表"见底就反弹"。
-
----
-
-#### 指标2：成交量萎缩（Volume Dry-up）
-
-**是什么**：在一轮恐慌性抛售之后，如果成交量明显萎缩（低于近30天平均成交量），说明卖盘已经枯竭——想卖的人都卖完了。这是底部形成的重要前兆。成交量就是某段时间内比特币的交易总量（或总金额）。
-
-**搜索关键词**：`Bitcoin trading volume 30 day average` 或 `BTC daily volume declining`
-
-**抄底信号标准**：
-- 当前日成交量 < 30日均量的70% → ✅ 触发：抛售衰竭，卖压枯竭
-- 成交量接近30日均量 → 🟡 中性
-- 成交量远高于30日均量 → ❌ 未触发：市场仍在活跃抛售中
-
-**解读要点**：恐慌抛售的特征是"放量暴跌"，而底部的特征是"缩量筑底"。如果价格已经跌了很多但成交量萎缩了，说明抛售动能在减弱。
+**Key interpretation**: The number of times Bitcoin's weekly RSI has dropped below 30 in history can be counted on one hand (2015, late 2018, March 2020, late 2022), and each time corresponded to a major bottom. However, note that RSI can remain at low levels for a period of time — it doesn't mean "it bounces as soon as it bottoms."
 
 ---
 
-#### 指标3：MVRV 比率（Market Value to Realized Value）
+#### Indicator 2: Volume Dry-up
 
-**是什么**：这是一个比特币独有的链上指标。
-- **Market Value（市值）**= 当前价格 × 总流通量，就是我们平时说的比特币总市值
-- **Realized Value（实现市值）**= 每个比特币按照它最后一次被转移时的价格来计算的总价值。可以简单理解为"所有持有者的平均成本价"
+**What it is**: After a round of panic selling, if trading volume significantly contracts (below the recent 30-day average volume), it indicates that selling pressure has been exhausted — everyone who wanted to sell has already sold. This is an important precursor to bottom formation. Volume refers to the total amount (or total value) of Bitcoin traded during a given period.
 
-当 MVRV < 1.0 时，意味着市场整体处于亏损状态（当前市值低于所有人的成本价之和），这在历史上是极佳的长期买入区域。
+**Search keywords**: `Bitcoin trading volume 30 day average` or `BTC daily volume declining`
 
-**搜索关键词**：`Bitcoin MVRV ratio` 或 `BTC MVRV glassnode`
+**Bottom signal criteria**:
+- Current daily volume < 70% of 30-day average → ✅ Triggered: Selling exhaustion, selling pressure dried up
+- Volume near the 30-day average → 🟡 Neutral
+- Volume far above the 30-day average → ❌ Not triggered: Market is still actively selling
 
-**抄底信号标准**：
-- MVRV < 1.0 → ✅ 触发：市场整体亏损，历史性底部区域
-- MVRV 1.0-1.5 → 🟡 偏低但未到极端
-- MVRV > 1.5 → ❌ 未触发：市场整体盈利状态
-
-**解读要点**：MVRV < 1 在比特币历史上只出现过几次（2011年、2015年、2018-2019年、2022年），每次持续时间都不长，之后都迎来了巨大涨幅。这是最可靠的周期底部指标之一。
+**Key interpretation**: The hallmark of panic selling is "high-volume crash," while the hallmark of a bottom is "low-volume base building." If the price has already dropped significantly but volume has contracted, it indicates that selling momentum is weakening.
 
 ---
 
-#### 指标4：社交媒体恐慌指数
+#### Indicator 3: MVRV Ratio (Market Value to Realized Value)
 
-**是什么**：通过分析 Twitter（X）、Reddit、Telegram 等社交平台上关于比特币的讨论情绪，计算出一个"恐慌/贪婪"分数。常用的有 Alternative.me 的 Fear & Greed Index（恐惧与贪婪指数），以及各种基于自然语言处理的情绪分析工具。0 = 极度恐惧，100 = 极度贪婪。
+**What it is**: This is an on-chain indicator unique to Bitcoin.
+- **Market Value (market cap)** = current price × total circulating supply, which is what we commonly refer to as Bitcoin's total market cap
+- **Realized Value (realized market cap)** = the total value calculated by pricing each Bitcoin at the price when it was last transferred. It can be simply understood as "the average cost basis of all holders"
 
-**搜索关键词**：`crypto fear and greed index` 或 `Bitcoin fear greed index today`
+When MVRV < 1.0, it means the market as a whole is at a loss (current market value is below the sum of everyone's cost basis), which has historically been an excellent long-term buying zone.
 
-**抄底信号标准**：
-- 恐惧指数 < 25（极度恐惧） → ✅ 触发：市场弥漫恐慌，往往是反向指标
-- 恐惧指数 25-45 → 🟡 偏恐惧但不极端
-- 恐惧指数 > 45 → ❌ 未触发：市场情绪正常或偏贪婪
+**Search keywords**: `Bitcoin MVRV ratio` or `BTC MVRV glassnode`
 
-**解读要点**：巴菲特名言"别人恐惧时我贪婪"在加密市场同样适用。当社交媒体充斥着"归零论"、"再也不碰"等言论时，往往就是底部附近。但极度恐惧可以持续数周甚至数月。
+**Bottom signal criteria**:
+- MVRV < 1.0 → ✅ Triggered: Overall market at a loss, historic bottom zone
+- MVRV 1.0-1.5 → 🟡 Low but not extreme
+- MVRV > 1.5 → ❌ Not triggered: Market overall in profit
 
----
-
-#### 指标5：矿机关机价（Miner Shutdown Price）
-
-**是什么**：比特币矿工需要支付电费来运行矿机。当比特币价格跌到某个矿机的挖矿成本以下时，运行该矿机就是亏损的，矿工会选择关机。主流矿机（如 Bitmain Antminer S19 系列或更新的 S21 系列）的关机价构成了一个"自然地板"——因为当大量矿工被迫关机时，网络算力下降，挖矿难度调整，最终达到新平衡。
-
-**搜索关键词**：`Bitcoin mining cost per BTC` 或 `Bitcoin miner breakeven price` 或 `Antminer S19 shutdown price`
-
-**抄底信号标准**：
-- 现价接近或低于主流矿机关机价 → ✅ 触发：价格接近生产成本底线
-- 现价高于关机价20-50% → 🟡 矿工承压但仍有利润
-- 现价远高于关机价 → ❌ 未触发：矿工利润充足
-
-**解读要点**：矿机关机价会随电价、矿机效率、网络难度变化而调整。每次减半（挖矿奖励减半）后，关机价会显著上升。需要关注最新一代主流矿机的成本线，而非老旧低效矿机。
+**Key interpretation**: MVRV < 1 has only occurred a few times in Bitcoin's history (2011, 2015, 2018-2019, 2022), each lasting only a short period, and all were followed by enormous price increases. This is one of the most reliable cycle bottom indicators.
 
 ---
 
-#### 指标6：长期持有者行为（LTH — Long Term Holders）
+#### Indicator 4: Social Media Fear Index
 
-**是什么**：链上数据将持有比特币超过155天（约5个月）的地址归类为"长期持有者"（LTH）。LTH Supply Ratio（长期持有者供应占比）= 长期持有者持有的BTC数量 ÷ 总流通BTC数量。当这个比例上升时，说明越来越多的币从短期交易者手中转移到了"钻石手"手中。
+**What it is**: By analyzing the sentiment of Bitcoin discussions on social platforms such as Twitter (X), Reddit, Telegram, etc., a "fear/greed" score is calculated. Commonly used tools include Alternative.me's Fear & Greed Index, as well as various sentiment analysis tools based on natural language processing. 0 = Extreme Fear, 100 = Extreme Greed.
 
-**搜索关键词**：`Bitcoin long term holder supply ratio` 或 `BTC LTH supply glassnode`
+**Search keywords**: `crypto fear and greed index` or `Bitcoin fear greed index today`
 
-**抄底信号标准**：
-- LTH 供应占比持续上升且 > 70% → ✅ 触发：聪明钱在积累，底部信号
-- LTH 供应占比稳定 → 🟡 中性
-- LTH 供应占比下降 → ❌ 未触发：长期持有者在抛售（通常出现在牛市顶部）
+**Bottom signal criteria**:
+- Fear index < 25 (Extreme Fear) → ✅ Triggered: Market is permeated with panic, often a contrarian indicator
+- Fear index 25-45 → 🟡 Leaning fearful but not extreme
+- Fear index > 45 → ❌ Not triggered: Market sentiment is normal or leaning greedy
 
-**解读要点**：长期持有者通常是经历过多轮牛熊的"老手"。当他们在低位大量增持时，说明这些经验丰富的投资者认为当前价格具有长期价值。这是最具参考意义的"聪明钱"指标之一。
+**Key interpretation**: Buffett's famous quote "Be greedy when others are fearful" applies equally to the crypto market. When social media is flooded with talk of "going to zero" or "never touching it again," it's often near the bottom. However, extreme fear can persist for weeks or even months.
 
 ---
 
-### 综合评估逻辑
+#### Indicator 5: Miner Shutdown Price
 
-统计6个指标中有多少个触发了抄底信号：
+**What it is**: Bitcoin miners need to pay electricity costs to run mining machines. When the Bitcoin price drops below a certain mining machine's mining cost, operating that machine becomes unprofitable, and miners will choose to shut down. The shutdown price of mainstream miners (such as Bitmain Antminer S19 series or the newer S21 series) forms a "natural floor" — because when a large number of miners are forced to shut down, network hashrate decreases, mining difficulty adjusts, and eventually a new equilibrium is reached.
 
-| 触发指标数 | 抄底评级 | 建仓建议 |
+**Search keywords**: `Bitcoin mining cost per BTC` or `Bitcoin miner breakeven price` or `Antminer S19 shutdown price`
+
+**Bottom signal criteria**:
+- Current price near or below mainstream miner shutdown price → ✅ Triggered: Price approaching production cost floor
+- Current price 20-50% above shutdown price → 🟡 Miners under pressure but still profitable
+- Current price far above shutdown price → ❌ Not triggered: Miners are well profitable
+
+**Key interpretation**: The miner shutdown price adjusts with changes in electricity costs, mining machine efficiency, and network difficulty. After each halving (mining reward halved), the shutdown price rises significantly. Focus on the cost floor of the latest generation of mainstream miners, not outdated and inefficient ones.
+
+---
+
+#### Indicator 6: Long-Term Holder Behavior (LTH — Long Term Holders)
+
+**What it is**: On-chain data classifies addresses that have held Bitcoin for more than 155 days (approximately 5 months) as "Long-Term Holders" (LTH). LTH Supply Ratio = BTC held by long-term holders ÷ total circulating BTC supply. When this ratio increases, it means more and more coins are transferring from short-term traders to "diamond hands."
+
+**Search keywords**: `Bitcoin long term holder supply ratio` or `BTC LTH supply glassnode`
+
+**Bottom signal criteria**:
+- LTH supply ratio continuously rising and > 70% → ✅ Triggered: Smart money is accumulating, bottom signal
+- LTH supply ratio stable → 🟡 Neutral
+- LTH supply ratio declining → ❌ Not triggered: Long-term holders are selling (typically occurs at bull market tops)
+
+**Key interpretation**: Long-term holders are typically "veterans" who have experienced multiple bull and bear cycles. When they accumulate heavily at low prices, it indicates that these experienced investors believe the current price has long-term value. This is one of the most meaningful "smart money" indicators.
+
+---
+
+### Comprehensive Evaluation Logic
+
+Count how many of the 6 indicators have triggered a bottom signal:
+
+| Triggered Indicators | Bottom Rating | Position-Building Recommendation |
 |-----------|---------|---------|
-| 0-1 个 | ❌ 弱（不建议） | 观望为主，不急于入场 |
-| 2 个 | 🟡 弱 | 可小额试探性建仓（总仓位5-10%） |
-| 3 个 | 🟡 中等 | 可开始分批建仓（总仓位10-20%） |
-| 4 个 | ✅ 强 | 分批建仓信号，可加大力度（总仓位20-40%） |
-| 5 个 | ✅✅ 很强 | 重仓抄底信号（总仓位40-60%） |
-| 6 个 | 🔥 极强（历史级底部） | 最大化建仓（总仓位60-80%），此机会非常罕见 |
+| 0-1 | ❌ Weak (Not recommended) | Wait and watch, no rush to enter |
+| 2 | 🟡 Weak | Small exploratory position (5-10% of total position) |
+| 3 | 🟡 Moderate | Begin building position in batches (10-20% of total position) |
+| 4 | ✅ Strong | Batch position-building signal, can increase size (20-40% of total position) |
+| 5 | ✅✅ Very Strong | Heavy position bottom-fishing signal (40-60% of total position) |
+| 6 | 🔥 Extremely Strong (Historic bottom) | Maximize position (60-80% of total position), this opportunity is very rare |
 
-**注意**：仓位比例是指你计划投入加密市场的总资金中的比例，而非个人全部资产。请根据自身风险承受能力调整。
+**Note**: Position ratios refer to the proportion of your total funds planned for the crypto market, not your total personal assets. Please adjust according to your own risk tolerance.
 
-## 输出格式
+## Output Format
 
-使用以下结构化模板输出分析结果：
+Use the following structured template to output the analysis results:
 
 ```
-# 🔍 比特币抄底时机分析报告
+# 🔍 Bitcoin Bottom-Timing Analysis Report
 
-**日期**：[当前日期]
-**BTC 当前价格**：$[价格]
+**Date**: [current date]
+**BTC Current Price**: $[price]
 
-## 📊 指标仪表盘
+## 📊 Indicator Dashboard
 
-| 指标 | 当前数值 | 抄底信号 | 说明 |
+| Indicator | Current Value | Bottom Signal | Description |
 |------|---------|---------|------|
-| 周线RSI | [数值] | [触发/未触发] | [简要说明] |
-| 成交量变化 | [相对30日均量] | [触发/未触发] | [简要说明] |
-| MVRV比率 | [数值] | [触发/未触发] | [简要说明] |
-| 恐惧贪婪指数 | [数值] | [触发/未触发] | [简要说明] |
-| 矿机关机价 | $[价格] | [触发/未触发] | [简要说明] |
-| LTH供应占比 | [百分比] | [触发/未触发] | [简要说明] |
+| Weekly RSI | [value] | [Triggered/Not triggered] | [Brief description] |
+| Volume Change | [relative to 30-day avg] | [Triggered/Not triggered] | [Brief description] |
+| MVRV Ratio | [value] | [Triggered/Not triggered] | [Brief description] |
+| Fear & Greed Index | [value] | [Triggered/Not triggered] | [Brief description] |
+| Miner Shutdown Price | $[price] | [Triggered/Not triggered] | [Brief description] |
+| LTH Supply Ratio | [percentage] | [Triggered/Not triggered] | [Brief description] |
 
-## 🚦 综合评级
+## 🚦 Overall Rating
 
-**抄底评级**：[极强 / 很强 / 强 / 中等 / 弱 / 不建议]
-**触发指标数**：[X] / 6
+**Bottom Rating**: [Extremely Strong / Very Strong / Strong / Moderate / Weak / Not recommended]
+**Triggered Indicators**: [X] / 6
 
-## 💰 建仓建议
+## 💰 Position-Building Recommendations
 
-[根据评级给出具体建仓策略，包括：]
-- 建议仓位比例
-- 分批建仓节奏（例如：分3次入场，每次间隔1周）
-- 止损参考位
+[Provide specific position-building strategy based on the rating, including:]
+- Recommended position ratio
+- Batch entry schedule (e.g., enter in 3 batches, 1 week apart)
+- Stop-loss reference level
 
-## 📈 历史参考
+## 📈 Historical Reference
 
-[如果当前触发了多个信号，提及历史上类似情况的表现]
+[If multiple signals are currently triggered, mention how similar situations performed historically]
 
-## ⚠️ 风险提示
+## ⚠️ Risk Disclaimer
 
-- 此模型基于历史数据回测，不保证未来有效
-- 加密市场波动极大，"底部"可能持续数月
-- 即使所有指标触发，价格仍可能进一步下跌
-- 永远不要投入超过自己承受能力的资金
-- 建议使用DCA（定投）而非一次性all-in
-- 以上分析仅供参考，不构成投资建议
+- This model is based on historical data backtesting and does not guarantee future effectiveness
+- The crypto market is extremely volatile; a "bottom" may persist for months
+- Even if all indicators are triggered, prices may still drop further
+- Never invest more than you can afford to lose
+- DCA (dollar-cost averaging) is recommended over going all-in at once
+- The above analysis is for reference only and does not constitute investment advice
 ```
 
-## 执行步骤
+## Execution Steps
 
-1. 先搜索比特币当前价格
-2. 使用 web_search 分别搜索6个指标的最新数据
-3. 如果某个指标搜索不到精确数值，尝试从 Glassnode、CoinGlass、CryptoQuant 等链上数据平台的公开报告中获取近似数据
-4. 根据信号标准逐一评估每个指标
-5. 统计触发数量，得出综合评级
-6. 按输出模板生成报告
-7. 在报告末尾附上主要数据来源链接
+1. First search for Bitcoin's current price
+2. Use web_search to search for the latest data for each of the 6 indicators
+3. If precise values for a certain indicator cannot be found, try to obtain approximate data from public reports on on-chain data platforms such as Glassnode, CoinGlass, CryptoQuant
+4. Evaluate each indicator one by one according to the signal criteria
+5. Count the number of triggers to arrive at an overall rating
+6. Generate the report using the output template
+7. Append main data source links at the end of the report
 
-## 重要提醒
+## Important Reminders
 
-- 部分链上数据（如 MVRV、LTH Supply）需要 Glassnode 等平台的付费订阅才能看到精确实时数据，免费搜索可能只找到分析师的引用数据或略有滞后的数据
-- 矿机关机价会随减半周期、电价、矿机迭代而变化，需注意数据时效性
-- 如果搜索不到某个指标的可靠数据，诚实说明而不是猜测
-- 这些指标适合判断中长期周期底部（周度/月度级别），不适合短线交易
-- 所有建议仅供参考，不构成投资建议
+- Some on-chain data (such as MVRV, LTH Supply) require paid subscriptions to platforms like Glassnode to access precise real-time data; free searches may only find data cited by analysts or slightly delayed data
+- The miner shutdown price changes with the halving cycle, electricity prices, and mining machine iterations — pay attention to data timeliness
+- If reliable data for a certain indicator cannot be found, honestly state so rather than guessing
+- These indicators are suitable for judging medium- to long-term cycle bottoms (weekly/monthly level), not for short-term trading
+- All recommendations are for reference only and do not constitute investment advice
