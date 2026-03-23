@@ -2,7 +2,12 @@
 
 Investment Analysis Skills for AI Agents — covering tech earnings, value investing, market sentiment, macro liquidity, and Bitcoin cycle analysis.
 
+Author: [Ruby](https://x.com/Rubywang), [Star](https://x.com/starzq)
+
+[English](#tech-earnings-deepdive-tech-stock-earnings-deep-dive-skill) | [中文](#tech-earnings-deepdive科技股财报深度分析-skill)
+
 ## Skills Overview
+=======
 
 | Skill | Description |
 |-------|-------------|
