@@ -1,96 +1,54 @@
 # Day1Global-Skills
 
-Day1Global Investment Analysis Skills Repository | Day1Global 投资分析 Skills 共享仓库
+Investment Analysis Skills for AI Agents — covering tech earnings, value investing, market sentiment, macro liquidity, and Bitcoin cycle analysis.
 
-[English](#tech-earnings-deepdive-tech-stock-earnings-deep-dive-skill) | [中文](#tech-earnings-deepdive科技股财报深度分析-skill)
+## Skills Overview
 
----
+| Skill | Description |
+|-------|-------------|
+| `tech-earnings-deepdive` | Institutional-grade tech stock earnings deep dive with 16 analysis modules, 6 investment philosophy perspectives, and actionable decision framework |
+| `us-value-investing` | Buffett-style 4-dimension value investing analysis (ROE, debt safety, FCF quality, economic moat) |
+| `us-market-sentiment` | US stock market sentiment monitoring via 5 core indicators (NAAIM, institutional allocation, retail flows, forward P/E, hedge fund leverage) |
+| `macro-liquidity` | Global liquidity monitoring and risk early-warning system (Fed net liquidity, SOFR, MOVE index, yen carry trade) |
+| `btc-bottom-model` | Bitcoin bottom-timing model using 6 on-chain and market indicators (RSI, volume, MVRV, fear index, miner cost, LTH behavior) |
 
-## tech-earnings-deepdive: Tech Stock Earnings Deep Dive Skill
-
-A comprehensive tech stock earnings analysis and multi-perspective investment memo system built for Claude (v3.0), covering **16 analysis modules**, **6 investment philosophy perspectives**, **multi-method valuation matrix**, **anti-bias framework**, and **actionable decision system**.
-
-### What Does This Skill Do?
-
-When you ask Claude about tech company earnings, this Skill automatically activates and generates an institutional-grade deep analysis report, including:
-
-- **Key Forces Identification** — Pinpoint 1-3 decisive forces that determine the company's future value
-- **16 Analysis Modules (A-P)** — Revenue quality, profitability, cash flow, forward guidance, competitive landscape, core KPIs, products & new businesses, partner ecosystem, executive team, macro & policy impact, valuation models, ownership distribution, long-term monitoring variables, R&D efficiency, accounting quality, ESG screening
-- **6 Investment Philosophy Perspectives** — Quality Compounder (Buffett/Munger), Imaginative Growth (Baillie Gifford/ARK), Fundamental Long-Short (Tiger Cubs), Deep Value (Klarman/Marks), Catalyst-Driven (Tepper/Ackman), Macro Tactical (Druckenmiller)
-- **Multi-Method Valuation Matrix** — Owner Earnings, PEG, Reverse DCF, Magic Formula, EV/EBITDA industry benchmarking, EV/Revenue + Rule of 40
-- **Variant View** — Identify blind spots in market consensus
-- **Anti-Bias Framework** — 6 cognitive trap self-checks, 7 financial red flags, 5 tech-specific blind spots, Pre-Mortem analysis
-- **Actionable Decisions** — Action Price, position sizing cadence, add/trim/exit triggers, long-term monitoring checklist
-
-### Use Cases
-
-The following types of questions will trigger this Skill:
-
-| Scenario | Example Prompt |
-|----------|---------------|
-| Earnings Analysis | "Analyze NVDA's latest earnings report" |
-| Quarterly Review | "How did META perform this quarter?" |
-| Position Decision | "Should I keep holding MSFT?" |
-| Deep Research | "Give me a deep dive on AAPL" |
-| Valuation Check | "Is GOOGL overvalued right now?" |
-| Multi-Angle Analysis | "How would the great investors view AMZN?" |
-
-### Installation
-
-#### Option 1: Install via Skills.sh (Recommended)
+## Installation
 
 ```bash
 npx skills add https://github.com/star23/Day1Global-Skills --all
 ```
 
-### Usage
+## Usage
 
-No additional configuration needed after installation. Simply ask Claude questions in natural language — the Skill activates automatically when it detects relevant topics.
+No additional configuration needed after installation. Simply ask your AI agent questions in natural language — the relevant skill activates automatically when it detects matching topics.
 
-**Basic Usage:**
+### tech-earnings-deepdive
+
+A comprehensive tech stock earnings analysis and multi-perspective investment memo system (v3.0).
+
+**What it does:**
+
+- **Key Forces Identification** — Pinpoint 1-3 decisive forces that determine the company's future value
+- **16 Analysis Modules (A-P)** — Revenue quality, profitability, cash flow, forward guidance, competitive landscape, core KPIs, products & new businesses, partner ecosystem, executive team, macro & policy impact, valuation models, ownership distribution, long-term monitoring variables, R&D efficiency, accounting quality, ESG screening
+- **6 Investment Philosophy Perspectives** — Quality Compounder (Buffett/Munger), Imaginative Growth (Baillie Gifford/ARK), Fundamental Long-Short (Tiger Cubs), Deep Value (Klarman/Marks), Catalyst-Driven (Tepper/Ackman), Macro Tactical (Druckenmiller)
+- **Multi-Method Valuation Matrix** — Owner Earnings, PEG, Reverse DCF, Magic Formula, EV/EBITDA, EV/Revenue + Rule of 40
+- **Variant View** — Identify blind spots in market consensus
+- **Anti-Bias Framework** — 6 cognitive trap self-checks, 7 financial red flags, 5 tech-specific blind spots, Pre-Mortem analysis
+- **Actionable Decisions** — Action Price, position sizing cadence, add/trim/exit triggers, long-term monitoring checklist
+
+**Example prompts:**
 
 ```
-Give me a deep analysis of NVDA's latest quarterly earnings
+Analyze NVDA's latest earnings report
 ```
-
 ```
-TSLA just reported earnings — do a comprehensive deep dive for me
+How did META perform this quarter?
 ```
-
 ```
 Analyze MSFT from multiple legendary investors' perspectives. Is it a buy right now?
 ```
 
-**Advanced Usage:**
-
-```
-Compare GOOGL and META's latest earnings — which one is a better hold?
-```
-
-```
-Build me a long-term monitoring variable checklist and Action Triggers for AMZN
-```
-
-### Report Structure
-
-A complete report generated by this Skill includes:
-
-```
-1.  Executive Summary & TL;DR
-2.  Key Forces
-3.  16-Module Analysis (A-P)
-4.  Valuation Matrix (multi-method + sensitivity + probability-weighted scenarios)
-5.  Ownership Distribution
-6.  Variant View
-7.  6 Investment Philosophy Perspectives Summary
-8.  Pre-Mortem & Anti-Bias Check
-9.  Long-Term Monitoring Variables & Action Triggers
-10. Decision Framework (position type / Action Price / sizing cadence / allocation)
-```
-
-### Evidence Standards
-
-The Skill enforces a three-tier evidence hierarchy to ensure analytical rigor:
+**Evidence Standards:**
 
 | Tier | Type | Examples |
 |------|------|---------|
@@ -98,120 +56,109 @@ The Skill enforces a three-tier evidence hierarchy to ensure analytical rigor:
 | Tier 2 | Factual Sources | SEC filings (10-K/10-Q/8-K), financial data, court documents |
 | Tier 3 | Opinion Sources | Sell-side research, news analysis, price target consensus |
 
-### Synergy with Other Skills
+---
 
-| Skill | How They Work Together |
-|-------|----------------------|
-| `us-value-investing` | Run the 4-dimension value score for cross-validation after completing earnings analysis |
-| `us-market-sentiment` | Integrates when Module J involves macro sentiment |
-| `macro-liquidity` | Integrates when liquidity conditions are a Key Force |
+### us-value-investing
 
-### Disclaimer
+Systematically evaluates listed companies through 4 core dimensions using Buffett-style value investing methods.
 
-All analyses generated by this Skill are based on publicly available information and model estimates. They are for research purposes only and do not constitute investment advice. Investing involves risk — please exercise caution in your decisions.
+**4 Dimensions:**
+
+1. **ROE Sustainability** — 3+ years of consistent returns on equity
+2. **Debt Safety** — Debt-to-asset ratio and leverage assessment
+3. **Free Cash Flow Quality** — FCF vs. net income ratio
+4. **Economic Moat** — Brand, network effects, cost advantage, switching costs
+
+**Scoring:** Each dimension scores 0-3 points (max 12). Ratings: A (10-12), B (7-9), C (4-6), D (0-3).
+
+**Example prompts:**
+
+```
+Is AAPL worth holding long-term from a value investing perspective?
+```
+```
+Help me analyze COST's fundamentals
+```
 
 ---
 
-## tech-earnings-deepdive：科技股财报深度分析 Skill
+### us-market-sentiment
 
-一个为 Claude 打造的科技股财报深度分析与多视角投资备忘录系统（v3.0），覆盖 **16 大分析模块**、**6 大投资哲学视角**、**多方法估值矩阵**、**反偏见框架**和**可执行决策体系**。
+Monitors US stock market sentiment through 5 core indicators to determine greed/fear levels and provide position recommendations.
 
-### 这个 Skill 能做什么？
+**5 Indicators:**
 
-当你向 Claude 提出科技公司财报相关问题时，该 Skill 会自动触发，提供机构级的深度分析报告，包括：
+1. **NAAIM Exposure Index** — Active fund manager equity exposure
+2. **Institutional Equity Allocation** — Global institutional portfolio allocation
+3. **Retail Net Buying** — Daily retail investor fund flows
+4. **S&P 500 Forward P/E** — Valuation metric vs. historical range
+5. **Hedge Fund Leverage** — Borrowing multiples from prime brokerage data
 
-- **Key Forces 识别** — 锚定 1-3 个决定公司未来价值的决定性力量
-- **16 大分析模块（A-P）** — 收入质量、盈利能力、现金流、前瞻指引、竞争格局、核心 KPI、产品与新业务、合作伙伴生态、高管团队、宏观政策、估值模型、筹码分布、长期监控变量、研发效率、会计质量、ESG 筛查
-- **6 大投资哲学视角** — 质量复利（巴菲特/芒格）、想象力成长（Baillie Gifford/ARK）、基本面多空（Tiger Cubs）、深度价值（Klarman/Marks）、催化剂驱动（Tepper/Ackman）、宏观战术（Druckenmiller）
-- **多方法估值矩阵** — Owner Earnings、PEG、反向 DCF、魔法公式、EV/EBITDA 行业对标、EV/Revenue + Rule of 40
-- **Variant View（变异视角）** — 找出市场共识的盲点
-- **反偏见框架** — 6 大认知陷阱自检、7 大财务红旗、5 大科技股盲区、Pre-Mortem 事前尸检
-- **可执行决策** — Action Price、建仓节奏、加仓/减仓/清仓触发条件、长期监控清单
-
-### 适用场景
-
-以下类型的问题都会触发此 Skill：
-
-| 场景 | 示例提问 |
-|------|---------|
-| 财报分析 | "帮我看看 NVDA 最新财报" |
-| 季报解读 | "META 这季度表现如何？" |
-| 持仓决策 | "该不该继续持有 MSFT？" |
-| 深度研究 | "帮我做个 AAPL 的 deep dive" |
-| 估值判断 | "GOOGL 现在贵不贵？" |
-| 多角度分析 | "投资大师怎么看 AMZN？" |
-
-### 安装方法
-
-#### 方法一：通过 Skills.sh 安装（推荐）
-
-```bash
-npx skills add https://github.com/star23/Day1Global-Skills --all
-```
-
-### 使用方法
-
-安装后无需额外配置。直接用自然语言向 Claude 提问即可，Skill 会在识别到相关话题时自动激活。
-
-**基本用法：**
+**Example prompts:**
 
 ```
-帮我深度分析一下 NVDA 最新一季的财报
+Is the US stock market overheating right now?
+```
+```
+Should I reduce my positions?
 ```
 
-```
-TSLA 这季度财报出来了，帮我做个全面的 deep dive
-```
+---
+
+### macro-liquidity
+
+Tracks the most critical "water level" in the global financial system — liquidity — through 4 core indicators.
+
+**4 Indicators:**
+
+1. **Fed Net Liquidity** — Fed Total Assets - TGA - ON RRP
+2. **SOFR Rate** — Overnight funding stress in the banking system
+3. **MOVE Index** — Treasury market volatility (bond market VIX)
+4. **Yen Carry Trade Signals** — USDJPY and US-Japan yield spread
+
+**Example prompts:**
 
 ```
-从多个投资大师的视角帮我看看 MSFT，现在值得买入吗？
+How is liquidity right now?
+```
+```
+Is the Fed injecting or draining liquidity?
 ```
 
-**进阶用法：**
+---
+
+### btc-bottom-model
+
+Systematically determines whether Bitcoin has entered a bottom zone worth building a position in, using 6 on-chain and market indicators.
+
+**6 Indicators:**
+
+1. **Weekly RSI** — Technical oversold signal
+2. **Volume Dry-up** — Selling exhaustion detection
+3. **MVRV Ratio** — Market value vs. realized value
+4. **Fear & Greed Index** — Social media sentiment
+5. **Miner Shutdown Price** — Production cost floor
+6. **Long-Term Holder Behavior** — Smart money accumulation signals
+
+**Example prompts:**
 
 ```
-对比分析 GOOGL 和 META 最新财报，哪个更值得持有？
+Has Bitcoin bottomed out? Can I buy the dip?
+```
+```
+What do on-chain indicators say about BTC right now?
 ```
 
-```
-帮我建立一个 AMZN 的长期监控变量清单和 Action Trigger
-```
+---
 
-### 分析报告结构
+## Skill Synergy
 
-Skill 生成的完整报告包含以下部分：
+| Combination | Use Case |
+|-------------|----------|
+| `tech-earnings-deepdive` + `us-value-investing` | Cross-validate earnings analysis with 4-dimension value scoring |
+| `tech-earnings-deepdive` + `us-market-sentiment` | Factor macro sentiment into earnings analysis |
+| `tech-earnings-deepdive` + `macro-liquidity` | Integrate liquidity conditions when it's a Key Force |
 
-```
-1. 执行摘要与 TL;DR
-2. Key Forces（决定性力量）
-3. 16 大模块分析（A-P）
-4. 估值矩阵（多方法 + 敏感性 + 概率加权情景）
-5. 筹码分布
-6. Variant View（变异视角）
-7. 6 大投资哲学视角汇总
-8. Pre-Mortem 与反偏见检查
-9. 长期监控变量与 Action Trigger
-10. 决策框架（持仓分类 / Action Price / 建仓节奏 / 仓位建议）
-```
+## Disclaimer
 
-### 证据标准
-
-该 Skill 采用三层证据体系，确保分析质量：
-
-| 层级 | 类型 | 举例 |
-|------|------|------|
-| 第一层 | 一手来源 | CEO 原话、员工评价、客户评价、GitHub 活跃度、专利、招聘动向 |
-| 第二层 | 事实来源 | SEC 文件（10-K/10-Q/8-K）、财报数据、法庭文件 |
-| 第三层 | 观点来源 | 卖方研报、新闻分析、价格目标汇总 |
-
-### 与其他 Skill 的协同
-
-| Skill | 协同方式 |
-|-------|---------|
-| `us-value-investing` | 完成财报分析后，运行四维价值评分做交叉验证 |
-| `us-market-sentiment` | 模块 J 涉及宏观情绪时联动 |
-| `macro-liquidity` | 流动性环境是 Key Force 时联动 |
-
-### 免责声明
-
-此 Skill 生成的分析基于公开信息和模型推算，仅供研究参考，不构成投资建议。投资有风险，决策需谨慎。
+All analyses generated by these skills are based on publicly available information and model estimates. They are for research purposes only and do not constitute investment advice. Investing involves risk — please exercise caution in your decisions.
